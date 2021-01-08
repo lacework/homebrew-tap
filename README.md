@@ -1,18 +1,20 @@
 <img src="https://techally-content.s3-us-west-1.amazonaws.com/public-content/lacework_logo_full.png" width="600">
 
 
-# Homebrew Lacework CLI
-A homebrew tap for the Lacework command line interface.
+# Homebrew Tap
+A homebrew tap for Lacework formulas.
 
-## Install
+## Lacework CLI Formula
+The formula for the Lacework command line interface installation.
+### Install
 Add the lacework tap and install the lacework cli
 ```
-brew tap lacework/lacework-cli
+brew tap lacework/tap
 
 brew install lacework-cli
 ```
 
-## Development
+### Development
 When modifying this formula, use the following command to test local changes:
 ```
 brew install --build-from-source Formula/lacework-cli.rb
@@ -20,7 +22,7 @@ brew install --build-from-source Formula/lacework-cli.rb
 ```
 Or, copy your changes to the homebrew formula directory and run brew install eg.
 ```
-mv path/to/my-test-formula.rb /usr/local/Homebrew/Library/Taps/lacework/homebrew-lacework-cli/
+mv path/to/my-test-formula.rb /usr/local/Homebrew/Library/Taps/lacework/homebrew-tap/
 
 brew install my-test-formula
 ```
