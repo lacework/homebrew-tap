@@ -4,7 +4,7 @@ class LaceworkCli < Formula
 
   desc "The Lacework Command Line Interface is a tool that helps you manage the Lacework cloud security platform"
   homepage "https://github.com/lacework/go-sdk/wiki/CLI-Documentation"
-  version "#{VERSION}"
+  version VERSION
   license "Apache-2.0"
   
   if OS.mac?
@@ -26,13 +26,18 @@ class LaceworkCli < Formula
         sha256 "938f7f14a6d6bd3a7e6ab7eca29ccbe3719df0d8863f4eb5bb0fe69dad45c717"
       else
         print "The Lacework CLI formula does not support this Architecture #{ARCH}"
-      end
+    end
   end
 
   bottle :unneeded
 
   def install
-    bin.install "lacework"
+    prefix.install "lacework"
+
+    (bin/"lacework").write <<~EOS
+    #!/bin/bash
+    LW_HOMEBREW_INSTALL=1 exec "#{prefix}/lacework" "$@"
+    EOS
   end
 
   test do
