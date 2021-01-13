@@ -7,10 +7,9 @@ A homebrew tap for Lacework formulas.
 The formula for the Lacework command-line interface installation.
 
 ### Install
-Add the lacework tap and install the lacework cli
+To add the Lacework tap and install the Lacework CLI.
 ```
-$ brew tap lacework/tap
-$ brew install lacework-cli
+$ brew install lacework/tap/lacework-cli
 ```
 
 ### Development
