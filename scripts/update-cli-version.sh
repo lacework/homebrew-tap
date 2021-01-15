@@ -18,7 +18,7 @@ main() {
   [[ $version != $currentVersion ]] || { echo >&2 "Formula is already on latest version"; exit 1; }
     
     echo "Updating current: $currentVersion with latest: $version"
-    bump_version $currentVersion $version
+    update_version $currentVersion $version
 
     for target in ${TARGETS[*]}; do
         replace_sha_sum $version $target
@@ -34,7 +34,7 @@ replace_sha_sum() {
   sed -i '' '/'$2'/{n;s/.*/    sha "'$_shasum'"/;}' $cli_formula
 }
 
-bump_version() {
+update_version() {
   sed -i '' 's/VERSION = "'$1'"/VERSION = "'$2'"/' $cli_formula
 }
 
