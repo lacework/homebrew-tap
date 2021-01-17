@@ -14,7 +14,7 @@ orbs:
 jobs:
   build:
       docker:
-        - image: circleci/ruby:latest
+        - image: linuxbrew/linuxbrew:latest
       steps:
         - checkout
         - run: make lint-cli
