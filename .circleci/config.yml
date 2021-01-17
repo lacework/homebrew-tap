@@ -11,16 +11,14 @@ parameters:
 orbs:
   slack: circleci/slack@3.4.2
 
-
 jobs:
   build:
-    docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-    executor: ruby/default
-    steps:
-      - checkout
-      - run: make lint-cli
-      - slack/status:
-          fail_only: true
-          mentions: << pipeline.parameters.slack-mentions >>
-          only_for_branches: <<pipeline.parameters.only_for_branches>>
+      docker:
+        - image: circleci/ruby:latest
+      steps:
+        - checkout
+        - run: make lint-cli
+        - slack/status:
+            fail_only: true
+            mentions: << pipeline.parameters.slack-mentions >>
+            only_for_branches: <<pipeline.parameters.only_for_branches>>

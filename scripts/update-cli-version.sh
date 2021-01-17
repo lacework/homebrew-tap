@@ -31,7 +31,7 @@ find_latest_version() {
 
 replace_sha_sum() {
   local _shasum=$(curl -sL "https://github.com/lacework/go-sdk/releases/download/$1/$2.sha256sum" | cut -d " " -f1)
-  sed -i '' '/'$2'/{n;s/.*/    sha "'$_shasum'"/;}' $cli_formula
+  sed -i '' '/'$2'/{n;s/.*/    sha256 "'$_shasum'"/;}' $cli_formula
 }
 
 update_version() {
