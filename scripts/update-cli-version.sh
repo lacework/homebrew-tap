@@ -23,6 +23,8 @@ main() {
     for target in ${TARGETS[*]}; do
         replace_sha_sum $version $target
     done
+
+    push_update_formula $version
 }
 
 find_latest_version() {
@@ -36,6 +38,15 @@ replace_sha_sum() {
 
 update_version() {
   sed -i '' 's/VERSION = "'$1'"/VERSION = "'$2'"/' $cli_formula
+}
+
+push_update_formula() {
+  log "commiting and pushing the updated formula to github"
+  git checkout -B update-formula
+  git commit -am "Update Formula $1"
+  git push origin update-formula
+  log ""
+  log "Follow the above url and open a pull request"
 }
 
 main "$@"

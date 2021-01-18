@@ -11,15 +11,26 @@ parameters:
 orbs:
   slack: circleci/slack@3.4.2
 
+executors:
+  brew-exec:
+    docker:
+      - image: homebrew/brew:latest
+
 jobs:
-  build:
-      docker:
-        - image: linuxbrew/linuxbrew:latest
-      steps:
-        - checkout
-        - run: git -C "/home/linuxbrew/.linuxbrew/Homebrew" remote set-url origin https://github.com/Homebrew/brew
-        - run: make lint-cli
-        - slack/status:
-            fail_only: true
-            mentions: << pipeline.parameters.slack-mentions >>
-            only_for_branches: <<pipeline.parameters.only_for_branches>>
+  audit:
+    executor: brew-exec
+    steps:
+      - checkout
+      - run: make lint-cli
+  update:
+    executor: brew-exec
+    steps:
+      - checkout
+      - run: make update-cli-version
+
+workflows:
+  version: 2
+  update-formula:
+    jobs:
+      - audit
+      - update

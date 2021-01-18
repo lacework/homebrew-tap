@@ -1,6 +1,6 @@
 
 lint-cli: 
-	brew audit Formula/lacework-cli.rb
+	brew audit --formula Formula/lacework-cli.rb --strict
 
 build-cli-from-source: 
 	brew install --build-from-source Formula/lacework-cli.rb 

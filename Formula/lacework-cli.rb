@@ -10,11 +10,11 @@ class LaceworkCli < Formula
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-darwin-amd64.zip"
     sha256 "f9ce80aef1c2da8c6b2af1dee3a68f63dcb8f42399995e3c33ad595c96030c24"
   end
-  if OS.linux? && Hardware::CPU.intel && !Hardware::CPU.is_64_bit?
+  if OS.linux? && Hardware::CPU.intel? && !Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-386.tar.gz"
     sha256 "6da2199230b508b4714f4b412d35c0661a54abda237b7f3283434afaae59f0cc"
   end
-  if OS.linux? && Hardware::CPU.intel && Hardware::CPU.is_64_bit?
+  if OS.linux? && Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-amd64.tar.gz"
     sha256 "e75b8f8eeeda80e607fd6788bcc5847ddcf83d44b1b165b41c5fc2106d2fc6dc"
   end
