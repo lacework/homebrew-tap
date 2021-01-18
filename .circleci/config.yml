@@ -17,6 +17,7 @@ jobs:
         - image: linuxbrew/linuxbrew:latest
       steps:
         - checkout
+        - run: git -C "/home/linuxbrew/.linuxbrew/Homebrew" remote set-url origin https://github.com/Homebrew/brew
         - run: make lint-cli
         - slack/status:
             fail_only: true
