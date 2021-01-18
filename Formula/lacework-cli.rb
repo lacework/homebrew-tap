@@ -1,11 +1,11 @@
 class LaceworkCli < Formula
-  VERSION = "v0.2.14"
-  desc "The Lacework Command Line Interface is a tool that helps you manage the Lacework cloud security platform"
+  VERSION = "v0.2.14".freeze
+  desc "Lacework command-line tool helps to manage the Lacework cloud platform"
   homepage "https://github.com/lacework/go-sdk/wiki/CLI-Documentation"
   version VERSION
   license "Apache-2.0"
   bottle :unneeded
-  
+
   if OS.mac?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-darwin-amd64.zip"
     sha256 "f9ce80aef1c2da8c6b2af1dee3a68f63dcb8f42399995e3c33ad595c96030c24"
@@ -24,15 +24,15 @@ class LaceworkCli < Formula
   end
   if OS.linux? && Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-arm64.tar.gz"
-    sha256 "8ef0da29b76fe3a4c76e7ce9199696d12dc4467caf63dc9a553de8aad2a5b681"   
+    sha256 "8ef0da29b76fe3a4c76e7ce9199696d12dc4467caf63dc9a553de8aad2a5b681"
   end
 
   def install
     prefix.install "lacework"
 
     (bin/"lacework").write <<~EOS
-    #!/bin/bash
-    LW_HOMEBREW_INSTALL=1 exec "#{prefix}/lacework" "$@"
+      #!/bin/bash
+      LW_HOMEBREW_INSTALL=1 exec "#{prefix}/lacework" "$@"
     EOS
   end
 
