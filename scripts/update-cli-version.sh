@@ -2,6 +2,8 @@
 
 readonly package_name=lacework-cli
 readonly cli_formula=Formula/lacework-cli.rb
+readonly git_user="Darren Murray"
+readonly git_email="darren.murray@lacework.net"
 
 TARGETS=(
   ${package_name}-darwin-amd64.zip
@@ -33,20 +35,22 @@ find_latest_version() {
 
 replace_sha_sum() {
   local _shasum=$(curl -sL "https://github.com/lacework/go-sdk/releases/download/$1/$2.sha256sum" | cut -d " " -f1)
-  sed -i '' '/'$2'/{n;s/.*/    sha256 "'$_shasum'"/;}' $cli_formula
+  sed -i '/'$2'/{n;s/.*/    sha256 "'$_shasum'"/;}' $cli_formula
 }
 
 update_version() {
-  sed -i '' 's/VERSION = "'$1'"/VERSION = "'$2'"/' $cli_formula
+  sed -i 's/VERSION = "'$1'"/VERSION = "'$2'"/' $cli_formula
 }
 
 push_update_formula() {
-  log "commiting and pushing the updated formula to github"
+  echo "commiting and pushing the updated formula to github"
+  git config --global user.email $git_email
+  git config --global user.name $git_user
   git checkout -B update-formula
   git commit -am "Update Formula $1"
   git push origin update-formula
-  log ""
-  log "Follow the above url and open a pull request"
+  echo ""
+  echo "Follow the above url and open a pull request"
 }
 
 main "$@"
