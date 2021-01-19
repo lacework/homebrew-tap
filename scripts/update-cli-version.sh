@@ -15,7 +15,7 @@ TARGETS=(
 
 main() {
   version=$(find_latest_version)
-  currentVersion=$(cat $cli_formula | grep 'VERSION = '| cut -d "=" -f2 | tr -d '"' | tr -d ' ')
+  currentVersion=$(cat $cli_formula | grep 'VERSION = '| sed 's/.*VERSION = "\(.*\)".freeze/\1/')
 
   [[ $version != $currentVersion ]] || { echo >&2 "Formula is already on latest version"; exit 1; }
     
