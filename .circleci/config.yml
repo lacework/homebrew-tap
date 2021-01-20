@@ -27,10 +27,16 @@ jobs:
     steps:
       - checkout
       - run: make update-cli-version
+  test:
+    executor: brew-exec
+    steps:
+      - checkout
+      - run: make install-cli-from-source
+      - run: make test
 
 workflows:
   version: 2
   audit-formula:
     jobs:
       - audit
-      
+      - test

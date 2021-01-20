@@ -37,6 +37,6 @@ class LaceworkCli < Formula
   end
 
   test do
-    assert_match "lacework #{VERSION}", shell_output("#{bin}/lacework version", 2)
+    assert_match "lacework #{VERSION}", shell_output("#{bin}/lacework version")
   end
 end
