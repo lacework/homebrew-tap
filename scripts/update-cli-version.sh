@@ -47,7 +47,7 @@ push_update_formula() {
   git config --global user.email $git_email
   git config --global user.name $git_user
   git commit -am "chore: Update lacework-cli formula to $1"
-  git push origin main --dry-run
+  git push origin main
 }
 
 main "$@"
