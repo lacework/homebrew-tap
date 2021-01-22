@@ -26,6 +26,9 @@ jobs:
     executor: brew-exec
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "6a:1b:3f:38:f4:02:07:5a:fa:52:fc:20:f6:46:8c:75"
       - run: make update-cli-version
   test:
     executor: brew-exec

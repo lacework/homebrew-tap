@@ -46,11 +46,8 @@ push_update_formula() {
   echo "commiting and pushing the updated formula to github"
   git config --global user.email $git_email
   git config --global user.name $git_user
-  git checkout -B update-formula
-  git commit -am "Update Formula $1"
-  git push origin update-formula
-  echo ""
-  echo "Follow the above url and open a pull request"
+  git commit -am "chore: Update lacework-cli formula to $1"
+  git push origin main
 }
 
 main "$@"
