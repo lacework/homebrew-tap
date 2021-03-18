@@ -28,8 +28,13 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "6a:1b:3f:38:f4:02:07:5a:fa:52:fc:20:f6:46:8c:75"
+            - "78:88:2e:20:f7:a3:2c:72:c1:02:30:39:14:c3:00:f7"
+      - slack/notify:
+          mentions: << pipeline.parameters.slack-mentions >>
+          message: Updating homebrew-tap formula
       - run: make update-cli-version
+      - slack/status:
+          mentions: << pipeline.parameters.slack-mentions >>
   test:
     executor: brew-exec
     steps:
