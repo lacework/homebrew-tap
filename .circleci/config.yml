@@ -30,8 +30,6 @@ jobs:
           fingerprints:
             - "78:88:2e:20:f7:a3:2c:72:c1:02:30:39:14:c3:00:f7"
       - run: make update-cli-version
-      - slack/status:
-          mentions: << pipeline.parameters.slack-mentions >>
   test:
     executor: brew-exec
     steps:
