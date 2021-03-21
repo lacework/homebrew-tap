@@ -25,13 +25,13 @@ jobs:
   update:
     executor: brew-exec
     steps:
+      - slack/notify:
+          mentions: << pipeline.parameters.slack-mentions >>
+          message: Updating homebrew-tap formula
       - checkout
       - add_ssh_keys:
           fingerprints:
             - "78:88:2e:20:f7:a3:2c:72:c1:02:30:39:14:c3:00:f7"
-      - slack/notify:
-          mentions: << pipeline.parameters.slack-mentions >>
-          message: Updating homebrew-tap formula
       - run: make update-cli-version
       - slack/status:
           mentions: << pipeline.parameters.slack-mentions >>
@@ -41,6 +41,10 @@ jobs:
       - checkout
       - run: make install-cli-from-source
       - run: make test
+      - slack/status:
+          fail_only: true
+          mentions: << pipeline.parameters.slack-mentions >>
+          only_for_branches: <<pipeline.parameters.only_for_branches>>
 
 workflows:
   version: 2
