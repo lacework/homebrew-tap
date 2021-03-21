@@ -1,5 +1,5 @@
 class LaceworkCli < Formula
-  VERSION = "v0.2.22".freeze
+  VERSION = "v0.2.23".freeze
   desc "Lacework command-line tool helps to manage the Lacework cloud platform"
   homepage "https://github.com/lacework/go-sdk/wiki/CLI-Documentation"
   version VERSION
@@ -8,23 +8,23 @@ class LaceworkCli < Formula
 
   if OS.mac?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-darwin-amd64.zip"
-    sha256 "d2568130f4306c59857a1be26203882ca940522e914fd4ec6844f7314d7a6ff3"
+    sha256 "a214ef8c43728f192eae5bd8c4cedd896a39579ee6b4a3548a83746120844070"
   end
   if OS.linux? && Hardware::CPU.intel? && !Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-386.tar.gz"
-    sha256 "27d21a278c3561c5f69cfdf98026eef376b9aa34dae6741fb6cbe7fc90608f61"
+    sha256 "a240e6cd9f9b283a5826bd27634429ff21af43547456788eeb4153f8c6cdf0de"
   end
   if OS.linux? && Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-amd64.tar.gz"
-    sha256 "dd4984ea7e3ed3176950cebf1aef3a2f29797f7695745aa2602a8027bcc0406f"
+    sha256 "74154f15f63b1bee15065ac09823a3788d3bbcf90de6037568247fa87762aa52"
   end
   if OS.linux? && Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-arm.tar.gz"
-    sha256 "8b6c0948beadc6458a9ac6de3a64cb20ae75ab3e431c8d7827b3e5934b4c2528"
+    sha256 "b3821508e94dd0932f7e5a2ba027bc42151874a68ccf40d8435753c843a4ad67"
   end
   if OS.linux? && Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-arm64.tar.gz"
-    sha256 "c632f586c9fec6efe2cf4e432a08353b67d3b520fa8955c2100edc84c48ba316"
+    sha256 "50f542c85b58c05cde621465babde4b675e3993d80d11f978adf43d44315c065"
   end
 
   def install
