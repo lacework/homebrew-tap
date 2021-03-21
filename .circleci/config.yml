@@ -25,9 +25,6 @@ jobs:
   update:
     executor: brew-exec
     steps:
-      - slack/notify:
-          mentions: << pipeline.parameters.slack-mentions >>
-          message: Updating homebrew-tap formula
       - checkout
       - add_ssh_keys:
           fingerprints:
