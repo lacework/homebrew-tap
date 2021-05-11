@@ -7,8 +7,13 @@ class LaceworkCli < Formula
   bottle :unneeded
 
   if OS.mac?
-    url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-darwin-amd64.zip"
-    sha256 "24a1083c0d6af82637c1bae8ea2c65fa634b769bbc97f0d79e297644e49b2fb0"
+    if Hardware::CPU.arm?
+      url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-darwin-arm64.zip"
+      sha256 ""
+    else
+      url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-darwin-amd64.zip"
+      sha256 "24a1083c0d6af82637c1bae8ea2c65fa634b769bbc97f0d79e297644e49b2fb0"
+    end
   end
   if OS.linux? && Hardware::CPU.intel? && !Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-386.tar.gz"
