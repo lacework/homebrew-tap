@@ -6,6 +6,7 @@ readonly git_user="Lacework Inc."
 readonly git_email="ops+releng@lacework.net"
 
 TARGETS=(
+  ${package_name}-darwin-arm64.zip
   ${package_name}-darwin-amd64.zip
   ${package_name}-linux-386.tar.gz
   ${package_name}-linux-amd64.tar.gz
