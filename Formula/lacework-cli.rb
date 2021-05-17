@@ -1,5 +1,5 @@
 class LaceworkCli < Formula
-  VERSION = "v0.6.0".freeze
+  VERSION = "v0.7.1".freeze
   desc "Lacework command-line tool helps to manage the Lacework cloud platform"
   homepage "https://github.com/lacework/go-sdk/wiki/CLI-Documentation"
   version VERSION
