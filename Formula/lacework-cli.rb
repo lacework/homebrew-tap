@@ -9,10 +9,10 @@ class LaceworkCli < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-darwin-arm64.zip"
-    sha256 "bc24721b44f875029839174c9fbb6e589b217336954a81af286eb5b8b9145a32"
+      sha256 "bc24721b44f875029839174c9fbb6e589b217336954a81af286eb5b8b9145a32"
     else
       url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-darwin-amd64.zip"
-    sha256 "032e741d408dd1daa58419188d4e2fd38b263481bae83d00c04e7fcb82ddb1e3"
+      sha256 "032e741d408dd1daa58419188d4e2fd38b263481bae83d00c04e7fcb82ddb1e3"
     end
   end
   if OS.linux? && Hardware::CPU.intel? && !Hardware::CPU.is_64_bit?
