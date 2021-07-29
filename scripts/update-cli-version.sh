@@ -27,6 +27,7 @@ main() {
         replace_sha_sum $version $target
     done
 
+    lint
     push_update_formula $version
 }
 
@@ -51,4 +52,9 @@ push_update_formula() {
   git push origin main
 }
 
+lint() {
+  brew audit --formula $cli_formula --strict --fix
+}
+
 main "$@"
+
