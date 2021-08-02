@@ -3,7 +3,7 @@
 readonly package_name=lacework-cli
 readonly cli_formula=Formula/lacework-cli.rb
 readonly git_user="Lacework Inc."
-readonly git_email="ops+releng@lacework.net"
+readonly git_email="tech-ally@lacework.net"
 
 TARGETS=(
   ${package_name}-darwin-arm64.zip
@@ -46,9 +46,12 @@ update_version() {
 
 push_update_formula() {
   echo "commiting and pushing the updated formula to github"
-  git config --global user.email $git_email
-  git config --global user.name $git_user
-  git commit -am "ci: update lacework-cli formula to $1"
+  if [ "$CI" != "" ]; then
+    git config --global user.email $git_email
+    git config --global user.name $git_user
+    git config --global user.signingkey $GPG_SIGNING_KEY
+  fi
+  git commit -sS -am "ci: update lacework-cli formula to $1"
   git push origin main
 }
 
