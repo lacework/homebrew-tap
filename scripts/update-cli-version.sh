@@ -16,7 +16,7 @@ TARGETS=(
 
 main() {
   version=$(find_latest_version)
-  currentVersion=$(cat $cli_formula | grep 'VERSION = '| sed 's/.*VERSION = "\(.*\)".freeze/\1/')
+  currentVersion=$(cat "$cli_formula" | grep 'VERSION = '| sed 's/.*VERSION = "\(.*\)".freeze/\1/')
 
   [[ $version != $currentVersion ]] || { echo >&2 "Formula is already on latest version"; exit 1; }
     
@@ -37,11 +37,11 @@ find_latest_version() {
 
 replace_sha_sum() {
   local _shasum=$(curl -sL "https://github.com/lacework/go-sdk/releases/download/$1/$2.sha256sum" | cut -d " " -f1)
-  sed -i '/'$2'/{n;s/.*/    sha256 "'$_shasum'"/;}' $cli_formula
+  sed -i '' '/'$2'/{n;s/.*/    sha256 "'$_shasum'"/;}' "$cli_formula"
 }
 
 update_version() {
-  sed -i 's/VERSION = "'$1'"/VERSION = "'$2'"/' $cli_formula
+  sed -i '' 's/VERSION = "'$1'"/VERSION = "'$2'"/' "$cli_formula"
 }
 
 push_update_formula() {
@@ -56,7 +56,7 @@ push_update_formula() {
 }
 
 lint() {
-  brew audit --formula $cli_formula --strict --fix
+  brew audit --formula "$cli_formula" --strict --fix
 }
 
 main "$@"
