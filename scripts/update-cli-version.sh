@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eou pipefail
+
 readonly package_name=lacework-cli
 readonly cli_formula=Formula/lacework-cli.rb
 readonly git_user="Lacework Inc."
