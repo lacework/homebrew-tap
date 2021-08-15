@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eou pipefail
+
 readonly package_name=lacework-cli
 readonly cli_formula=Formula/lacework-cli.rb
 readonly git_user="Lacework Inc."
@@ -20,15 +22,15 @@ main() {
 
   [[ $version != $currentVersion ]] || { echo >&2 "Formula is already on latest version"; exit 1; }
     
-    echo "Updating current: $currentVersion with latest: $version"
-    update_version $currentVersion $version
+  echo "Updating current: $currentVersion with latest: $version"
+  update_version $currentVersion $version
 
-    for target in ${TARGETS[*]}; do
-        replace_sha_sum $version $target
-    done
+  for target in ${TARGETS[*]}; do
+      replace_sha_sum $version $target
+  done
 
-    lint
-    push_update_formula $version
+  lint
+  push_update_formula $version
 }
 
 find_latest_version() {
@@ -37,7 +39,11 @@ find_latest_version() {
 
 replace_sha_sum() {
   local _shasum=$(curl -sL "https://github.com/lacework/go-sdk/releases/download/$1/$2.sha256sum" | cut -d " " -f1)
-  sed -i '' '/'$2'/{n;s/.*/    sha256 "'$_shasum'"/;}' "$cli_formula"
+  if [ `uname -s` == "Darwin" ]; then
+    sed -i '' '/'$2'/{n;s/^\( *\)sha256.*/\1sha256 "'$_shasum'"/;}' "$cli_formula"
+  else
+    sed -i '/'$2'/{n;s/^\( *\)sha256.*/\1sha256 "'$_shasum'"/;}' "$cli_formula"
+  fi
 }
 
 update_version() {
