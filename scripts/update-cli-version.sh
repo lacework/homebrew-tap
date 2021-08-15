@@ -47,7 +47,11 @@ replace_sha_sum() {
 }
 
 update_version() {
-  sed -i '' 's/VERSION = "'$1'"/VERSION = "'$2'"/' "$cli_formula"
+  if [ `uname -s` == "Darwin" ]; then
+    sed -i '' 's/VERSION = "'$1'"/VERSION = "'$2'"/' "$cli_formula"
+  else
+    sed -i 's/VERSION = "'$1'"/VERSION = "'$2'"/' "$cli_formula"
+  fi
 }
 
 push_update_formula() {
