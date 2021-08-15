@@ -1,5 +1,5 @@
 class LaceworkCli < Formula
-  VERSION = "v0.12.0".freeze
+  VERSION = "v0.13.0".freeze
   desc "Lacework command-line tool helps to manage the Lacework cloud platform"
   homepage "https://github.com/lacework/go-sdk/wiki/CLI-Documentation"
   version VERSION
@@ -9,27 +9,27 @@ class LaceworkCli < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-darwin-arm64.zip"
-      sha256 "5c98d6a613c129ddcd98d95f37686b1ee93d525ac4da38d928c537d4f9e43dd1"
+      sha256 "c5b38e9cdd09ae9d12d3dc04c756bd805d69fb015220795d492ca8a07ace93c8"
     else
       url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-darwin-amd64.zip"
-      sha256 "23cfebe6dbe42938b643509067da22ab3a70d756cf1b61dc50e16dd8a1c694e3"
+      sha256 "2d368d260819464bd4268b0badfa0f570a3de0d1dd3078713718c0459d4a0959"
     end
   end
   if OS.linux? && Hardware::CPU.intel? && !Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-386.tar.gz"
-    sha256 "bf2978f8034e25b7734a37b0ef09f5c0324568f1feace834dad97cb221f1c00e"
+    sha256 "a073af45cfb0924ccab78d455c12a7d77b2760641db5f9a42b1b8bb7a3324ead"
   end
   if OS.linux? && Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-amd64.tar.gz"
-    sha256 "6712a113530ec915302ec788be93579845e1287f6ff0d5b9cae15e830572a7d0"
+    sha256 "84ac9dc660666b09b2b3381fc6aa11119f9c1c11172d0f6f1a1da440feed36dc"
   end
   if OS.linux? && Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-arm.tar.gz"
-    sha256 "4c32b0e6e39cbfc12f2f65388d05128b225242c4f38f77954f7e3352f6042db5"
+    sha256 "c7e0401bfb2473a9f2ea1ba976419aa51b25528b1c7adaaeed62aee3d387dcc6"
   end
   if OS.linux? && Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-arm64.tar.gz"
-    sha256 "a3be7aff0c467759397e003bfd1af38e71b54750cd60600bd631ae20bb469a7e"
+    sha256 "2feca3a0bf08dbbff567254ad2ec34832fde9c360fdf1a03fc76ef6d0912aef3"
   end
 
   def install
