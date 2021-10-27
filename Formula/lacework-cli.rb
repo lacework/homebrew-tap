@@ -4,7 +4,6 @@ class LaceworkCli < Formula
   homepage "https://github.com/lacework/go-sdk/wiki/CLI-Documentation"
   version VERSION
   license "Apache-2.0"
-  bottle :unneeded
 
   if OS.mac?
     if Hardware::CPU.arm?
