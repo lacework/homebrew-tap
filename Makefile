@@ -10,3 +10,6 @@ test:
 
 update-cli-version: 
 	scripts/update-cli-version.sh
+
+install-check-warnings: 
+	scripts/install-from-source.sh
