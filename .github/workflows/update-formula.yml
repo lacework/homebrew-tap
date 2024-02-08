@@ -1,0 +1,20 @@
+name: Update Homebrew Formula
+
+on: workflow_dispatch
+
+jobs:
+  update-formula:
+    runs-on: ubuntu-latest
+    container: homebrew/brew:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # - name: Set up Homebrew
+      #   id: set-up-homebrew
+      #   uses: Homebrew/actions/setup-homebrew@master
+      - name: Update CLI Version
+        run: |
+          - sudo apt-get update -y
+          - sudo apt-get install gpg-agent -y
+          - echo "$GPG_SECRET_KEY" | base64 --decode | gpg --import --no-tty --batch --yes
+          - make update-cli-version
