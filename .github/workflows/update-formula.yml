@@ -14,9 +14,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Update CLI Version
-        shell: bash
         run: |
-          - sudo apt-get update -y
-          - sudo apt-get install gpg-agent -y
-          - echo "$GPG_SECRET_KEY" | base64 --decode | gpg --import --no-tty --batch --yes
-          - make update-cli-version
+          sudo apt-get update -y
+          sudo apt-get install gpg-agent -y
+          echo "$GPG_SECRET_KEY" | base64 --decode | gpg --import --no-tty --batch --yes
+          make update-cli-version
