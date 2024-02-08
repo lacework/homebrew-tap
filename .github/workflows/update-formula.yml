@@ -13,10 +13,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # - name: Set up Homebrew
-      #   id: set-up-homebrew
-      #   uses: Homebrew/actions/setup-homebrew@master
       - name: Update CLI Version
+        shell: bash
         run: |
           - sudo apt-get update -y
           - sudo apt-get install gpg-agent -y
