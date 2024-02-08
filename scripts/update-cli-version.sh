@@ -21,7 +21,7 @@ main() {
   currentVersion=$(cat "$cli_formula" | grep 'VERSION = '| sed 's/.*VERSION = "\(.*\)".freeze/\1/')
 
   [[ $version != $currentVersion ]] || { echo >&2 "Formula is already on latest version"; exit 1; }
-
+    
   echo "Updating current: $currentVersion with latest: $version"
   update_version $currentVersion $version
 
@@ -59,6 +59,7 @@ push_update_formula() {
   if [ "$CI" != "" ]; then
     git config --global user.email $git_email
     git config --global user.name $git_user
+    git config --global user.signingkey $GPG_SIGNING_KEY
   fi
   git commit -sS -am "ci: update lacework-cli formula to $1"
   git push origin main
