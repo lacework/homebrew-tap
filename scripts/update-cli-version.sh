@@ -29,6 +29,7 @@ main() {
       replace_sha_sum $version $target
   done
 
+  lint
   push_update_formula $version
 }
 
@@ -62,6 +63,13 @@ push_update_formula() {
   fi
   git commit -sS -am "ci: update lacework-cli formula to $1"
   git push origin main
+}
+
+lint() {
+  if [ "$CI" != "" ]; then
+    # Need to create a local tap to do this
+    brew audit --formula "$package_name" --strict --fix
+  fi
 }
 
 main "$@"
