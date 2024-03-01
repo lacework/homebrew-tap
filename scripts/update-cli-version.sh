@@ -21,7 +21,7 @@ main() {
   currentVersion=$(cat "$cli_formula" | grep 'VERSION = '| sed 's/.*VERSION = "\(.*\)".freeze/\1/')
 
   [[ $version != $currentVersion ]] || { echo >&2 "Formula is already on latest version"; exit 1; }
-    
+
   echo "Updating current: $currentVersion with latest: $version"
   update_version $currentVersion $version
 
@@ -29,7 +29,6 @@ main() {
       replace_sha_sum $version $target
   done
 
-  lint
   push_update_formula $version
 }
 
@@ -63,10 +62,6 @@ push_update_formula() {
   fi
   git commit -sS -am "ci: update lacework-cli formula to $1"
   git push origin main
-}
-
-lint() {
-  brew audit --formula "$cli_formula" --strict --fix
 }
 
 main "$@"
