@@ -1,5 +1,5 @@
 class LaceworkCli < Formula
-  VERSION = "v2.1.1".freeze
+  VERSION = "v2.1.2".freeze
   desc "Lacework command-line interface helps to manage the Lacework platform"
   homepage "https://docs.lacework.com/cli"
   version VERSION
@@ -8,27 +8,27 @@ class LaceworkCli < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-darwin-arm64.zip"
-      sha256 "569727ef9f32825605ed0e1b60de0153d6edfbef92a1063f3a03da4648c44751"
+      sha256 "4f65d08062653813b27e678f7781bf6f8901737660aedb290485d687352a07c1"
     else
       url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-darwin-amd64.zip"
-      sha256 "f621db3cc184fe07a0d32ebc2ddfcaf0aa8bce9c1a6d536de1e36b9ea9bc754a"
+      sha256 "c060bc2cf89f65e32defa20d08d14972fbc9b23a3220801ecf0c824d2ca293d0"
     end
   end
   if OS.linux? && Hardware::CPU.intel? && !Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-386.tar.gz"
-    sha256 "92f4256d331a8f4a0254b1dad1f001424cc7d18749ef8bf37c02e3d463c01149"
+    sha256 "8afd91fa292c9ae5a7838080b170638621a78f02e09d7407d936499abafc6184"
   end
   if OS.linux? && Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-amd64.tar.gz"
-    sha256 "58e5dbef1a39010609a8b2880f8376ed23c1a476eba543637083154b4a53464a"
+    sha256 "356249dcea20354fcdb1c33832e111b1b553f671429b4613914f15aaa13c2bda"
   end
   if OS.linux? && Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-arm.tar.gz"
-    sha256 "d450774d71316050ee50b05bd7ed72d5b580e3de316ea2a5aef4b9a3de7f13cf"
+    sha256 "931b18ff66e4fb2158baba9ed7ba9ac380931d462da57837f26beb8d95be4fdc"
   end
   if OS.linux? && Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
     url "https://github.com/lacework/go-sdk/releases/download/#{VERSION}/lacework-cli-linux-arm64.tar.gz"
-    sha256 "280e06f6354f357cdd7c3dd19b4c93cc59f529cbfa83cfe1d7dc746da4f152e3"
+    sha256 "36ca20c22325877c4e95bf303d5a4f18183a8f73a9949f090d22277af41d0942"
   end
 
   def install
